@@ -3,6 +3,7 @@ var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');
 const cors = require('cors')
 const data = require('./MOCK_DATA.json')
+const userData = require('./user_data.json')
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
@@ -45,7 +46,8 @@ var root = {
     return data.map(ids => ids.id);
   },
   logIn: ({ user, pwd }) => {
-    return (user === "root" && pwd === "password")
+    const index=userData.findIndex(x=>x.user==user)
+    return (userData[index].password===pwd)
   },
   filterEmployees: ({ filtro }) => {
     const fil = filtro.toLowerCase();
