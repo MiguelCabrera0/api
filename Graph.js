@@ -60,6 +60,7 @@ var root = {
   }
 };
 
+port = process.env.PORT || 80
 var app = express();
 app.use(cors());
 app.use('/', graphqlHTTP({
@@ -67,4 +68,4 @@ app.use('/', graphqlHTTP({
   rootValue: root,
   graphiql: true,
 }));
-app.listen(4000);
+app.listen(port);
